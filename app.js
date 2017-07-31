@@ -1,6 +1,6 @@
-var BasicFlashcard = require('./basic-flashcard.js');
+var BasicFlashcard = require('./basicCard.js');
 
-var ClozeFlashcard = require('./cloze-flashcard.js');
+var ClozeFlashcard = require('./clozeCard.js');
 
 var inquirer = require('inquirer');
 
@@ -30,9 +30,9 @@ var addCard = function() {
         message: 'What kind of flashcard would you like to create?',
         type: 'list',
         choices: [{
-            name: 'basic-flashcard'
+            name: 'basicCard'
         }, {
-            name: 'cloze-flashcard'
+            name: 'clozeCard'
         }]
   
     }]).then(function(answer) {
@@ -64,7 +64,7 @@ var addCard = function() {
                 newBasic.create();
                 whatsNext();
             });
-        } else if (answer.cardType === 'cloze-flashcard') {
+        } else if (answer.cardType === 'clozeCard') {
             inquirer.prompt([{
                 name: 'text',
                 message: 'What is the full text?',
@@ -91,7 +91,7 @@ var addCard = function() {
                 var text = answer.text;
                 var cloze = answer.cloze;
                 if (text.includes(cloze)) {
-                    var newCloze = new ClozeFlashcard(text, cloze);
+                    var newCloze = new ClozeCard(text, cloze);
                     newCloze.create();
                     whatsNext();
                 } else {
